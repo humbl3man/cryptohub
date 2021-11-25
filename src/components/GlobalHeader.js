@@ -9,7 +9,7 @@ export default function GlobalHeader() {
       {Boolean(isFetching) && <div className='absolute text-sm font-bold top-0 left-0 p-2 text-white'>Fetching...</div>}
       <div className='mx-auto max-w-8xl'>
         <h1 className='font-bold text-3xl text-white mb-2'>CrytoHub</h1>
-        <p className='text-white opacity-80'>Cryto market information</p>
+        <p className='text-white opacity-80'>Crypto market information</p>
       </div>
     </header>
   );
