@@ -1,4 +1,3 @@
-import { AxiosError, AxiosResponse } from 'axios';
 import React, { createContext, useState } from 'react';
 import { useQuery } from 'react-query';
 import { getCryptoGlobalPrices, getNews } from '../api';
