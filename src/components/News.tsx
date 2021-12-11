@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
 import { AppContext } from '../context/AppContext';
 
-export default function News() {
+const News: React.FC = () => {
   const {
     news: { data: newsData, status }
   } = useContext(AppContext);
@@ -18,4 +18,6 @@ export default function News() {
       })}
     </>
   );
-}
+};
+
+export default News;

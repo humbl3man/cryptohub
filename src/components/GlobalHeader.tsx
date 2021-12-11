@@ -1,7 +1,7 @@
 import React from 'react';
 import { useIsFetching } from 'react-query';
 
-export default function GlobalHeader() {
+const GlobalHeader: React.FC<{ title?: string }> = ({ title }) => {
   const isFetching = useIsFetching();
 
   return (
@@ -19,9 +19,11 @@ export default function GlobalHeader() {
       )}
 
       <div className='mx-auto max-w-8xl'>
-        <h1 className='font-bold text-3xl text-white mb-2'>CrytoHub</h1>
+        <h1 className='font-bold text-3xl text-white mb-2'>{title || 'CrytoHub'}</h1>
         <p className='text-white opacity-80'>Crypto market information</p>
       </div>
     </header>
   );
-}
+};
+
+export default GlobalHeader;

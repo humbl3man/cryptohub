@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
 import { AppContext } from '../context/AppContext';
 
-export default function DisplayToggle() {
+const DisplayToggle = () => {
   const { display, updateDisplay } = useContext(AppContext);
   const buttonBaseClass = 'px-2 py-1 border border-blue-600';
   return (
@@ -14,4 +14,6 @@ export default function DisplayToggle() {
       </button>
     </div>
   );
-}
+};
+
+export default DisplayToggle;

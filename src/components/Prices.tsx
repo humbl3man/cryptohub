@@ -3,7 +3,7 @@ import { useIsFetching } from 'react-query';
 import { AppContext } from '../context/AppContext';
 import formatPrice from '../utils/formatPrice';
 
-export default function Prices() {
+const Prices: React.FC = () => {
   const ctx = useContext(AppContext);
   const {
     prices: { data: priceData, status },
@@ -19,7 +19,7 @@ export default function Prices() {
       <table className='table-auto w-full'>
         <thead className='text-sm'>
           <tr className='bg-gray-100 text-left'>
-            <th className='p-2 bg-blue-700 text-white text-center border-l border-r border-gray-300'>Rank</th>
+            <th className='p-2 text-center border-r border-l border-gray-300'>Rank</th>
             <th className='p-2 border-r border-gray-300'>Name</th>
             <th className='p-2 border-r border-gray-300'>Price</th>
             <th className='p-2 border-r border-gray-300'>Price Change (1w)</th>
@@ -31,7 +31,7 @@ export default function Prices() {
             priceData.map((coin: any) => {
               return (
                 <tr key={coin.id}>
-                  <td className='text-center'>{coin.rank}</td>
+                  <td className='text-center border-r border-l border-gray-300'>{coin.rank}</td>
                   <td className='p-2'>
                     <div className='flex'>
                       <img src={coin.icon} className='w-8 h-8 inline-block mr-3' alt={coin.id} />
@@ -53,15 +53,17 @@ export default function Prices() {
             })}
         </tbody>
       </table>
-      <div className='mt-4 text-center'>
+      <div className='mt-4'>
         <button
           type='button'
           disabled={Boolean(isFetching)}
-          className='border bg-white text-blue-800 border-blue-800 leading-tight py-2 px-4 text-sm rounded-sm font-bold hover:bg-blue-800 hover:text-white transition'
+          className='block mx-auto max-w-xs w-52 border bg-white text-blue-800 border-blue-800 leading-tight py-2 px-4 text-sm rounded-sm font-bold hover:bg-blue-800 hover:text-white transition'
           onClick={() => incrementLimit()}>
           {isFetching ? 'Fetching...' : 'Load Next 10'}
         </button>
       </div>
     </div>
   );
-}
+};
+
+export default Prices;
