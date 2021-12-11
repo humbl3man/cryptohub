@@ -4,7 +4,11 @@ import { AppContext } from '../context/AppContext';
 import formatPrice from '../utils/formatPrice';
 
 export default function Prices() {
-  const { prices, status, incrementLimit } = useContext(AppContext);
+  const ctx = useContext(AppContext);
+  const {
+    prices: { data: priceData, status },
+    incrementLimit
+  } = ctx;
   const isFetching = useIsFetching();
 
   if (status === 'loading') {
@@ -23,8 +27,8 @@ export default function Prices() {
           </tr>
         </thead>
         <tbody>
-          {prices.data &&
-            prices.data.map((coin) => {
+          {priceData &&
+            priceData.map((coin: any) => {
               return (
                 <tr key={coin.id}>
                   <td className='text-center'>{coin.rank}</td>
@@ -52,7 +56,7 @@ export default function Prices() {
       <div className='mt-4 text-center'>
         <button
           type='button'
-          disabled={isFetching}
+          disabled={Boolean(isFetching)}
           className='border bg-white text-blue-800 border-blue-800 leading-tight py-2 px-4 text-sm rounded-sm font-bold hover:bg-blue-800 hover:text-white transition'
           onClick={() => incrementLimit()}>
           {isFetching ? 'Fetching...' : 'Load Next 10'}
