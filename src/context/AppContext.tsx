@@ -2,8 +2,37 @@ import React, { createContext, useState } from 'react';
 import { useQuery } from 'react-query';
 import { getCryptoGlobalPrices, getNews } from '../api';
 
-const AppContext = createContext();
-const AppProvider = ({ children }) => {
+interface IAppProvider {
+  children: React.ReactNode | Array<React.ReactNode>;
+}
+interface IAppContext {
+  display: string;
+  updateDisplay: (x: 'news' | 'prices') => any;
+  incrementLimit: any;
+  prices: {
+    data: any;
+    status: string;
+  };
+  news: {
+    data: any;
+    status: string;
+  };
+}
+const AppContext: React.Context<IAppContext> = createContext({
+  display: 'prices',
+  updateDisplay: (x) => {},
+  incrementLimit: () => {},
+  prices: {
+    data: null,
+    status: ''
+  },
+  news: {
+    data: null,
+    status: ''
+  }
+});
+
+const AppProvider = ({ children }: IAppProvider) => {
   const [skip, setSkip] = useState(10);
   const [display, setDisplay] = useState('prices');
   const prices = useQuery(['prices', skip], ({ queryKey }) => getCryptoGlobalPrices(queryKey[1], 'usd'), {
@@ -16,11 +45,11 @@ const AppProvider = ({ children }) => {
     enabled: display === 'news'
   });
 
-  function updateDisplay(value) {
+  function updateDisplay(value: 'news' | 'prices') {
     if (value === 'news') {
       news.refetch();
       setDisplay('news');
-    } else {
+    } else if (value === 'prices') {
       prices.refetch();
       setDisplay('prices');
     }

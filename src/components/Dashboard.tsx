@@ -4,7 +4,7 @@ import DisplayToggle from './DisplayToggle';
 import News from './News';
 import Prices from './Prices';
 
-export default function Dashboard() {
+const Dashboard: React.FC = () => {
   const { display } = useContext(AppContext);
 
   return (
@@ -14,4 +14,6 @@ export default function Dashboard() {
       {display === 'news' && <News />}
     </>
   );
-}
+};
+
+export default Dashboard;
