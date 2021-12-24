@@ -1,6 +1,7 @@
 import React, { useContext } from 'react';
 import { useIsFetching } from 'react-query';
 import { AppContext } from '../context/AppContext';
+import { formatVolume } from '../utils';
 import formatPrice from '../utils/formatPrice';
 
 const Prices: React.FC = () => {
@@ -23,7 +24,9 @@ const Prices: React.FC = () => {
             <th className='p-2 border-r border-gray-300'>Name</th>
             <th className='p-2 border-r border-gray-300'>Price</th>
             <th className='p-2 border-r border-gray-300'>Price Change (1w)</th>
-            <th className='p-2'>Volume</th>
+            <th className='p-2 border-r border-gray-300'>Market Cap</th>
+            <th className='p-2 border-r border-gray-300'>Volume</th>
+            <th className='p-2'>Available Supply</th>
           </tr>
         </thead>
         <tbody>
@@ -41,13 +44,10 @@ const Prices: React.FC = () => {
                     </div>
                   </td>
                   <td className='pl-2'>{formatPrice(coin.price)}</td>
-                  <td className='pl-2'>{coin.priceChange1w}</td>
-                  <td className='pl-2'>
-                    {new Intl.NumberFormat('en-US', {
-                      style: 'decimal',
-                      maximumFractionDigits: 0
-                    }).format(coin.volume)}
-                  </td>
+                  <td className='pl-2'>{coin.priceChange1w}%</td>
+                  <td className='pl-2'>{formatVolume(coin.marketCap)}</td>
+                  <td className='pl-2'>{formatVolume(coin.volume)}</td>
+                  <td className='pl-2'>{formatVolume(coin.availableSupply)}</td>
                 </tr>
               );
             })}
