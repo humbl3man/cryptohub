@@ -3,13 +3,16 @@ import { AppContext } from '../context/AppContext';
 
 const DisplayToggle = () => {
   const { display, updateDisplay } = useContext(AppContext);
-  const buttonBaseClass = 'px-2 py-1 border border-blue-600';
+  const buttonBaseClass = 'select-none pr-2';
+  const activeClass = 'text-gray-400 pointer-events-none';
+  const inactiveClass = 'text-blue-600 underline';
+
   return (
-    <div className='mb-8'>
-      <button className={`${buttonBaseClass} ${display === 'prices' ? 'bg-blue-600 text-white' : ''}`} type='button' onClick={() => updateDisplay('prices')}>
+    <div className='mb-8 pb-4 border-b border-gray-300'>
+      <button className={`${buttonBaseClass} ${display === 'prices' ? activeClass : inactiveClass}`} type='button' onClick={() => updateDisplay('prices')}>
         Prices
       </button>
-      <button className={`${buttonBaseClass} ${display === 'news' ? 'bg-blue-600 text-white' : ''}`} type='button' onClick={() => updateDisplay('news')}>
+      <button className={`${buttonBaseClass} ${display === 'news' ? activeClass : inactiveClass}`} type='button' onClick={() => updateDisplay('news')}>
         News
       </button>
     </div>
