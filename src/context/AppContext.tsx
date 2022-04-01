@@ -5,6 +5,7 @@ import { getCryptoGlobalPrices, getNews } from '../api';
 interface IAppProvider {
   children: React.ReactNode | Array<React.ReactNode>;
 }
+
 interface IAppContext {
   display: string;
   updateDisplay: (x: 'news' | 'prices') => any;
@@ -27,7 +28,7 @@ const AppContext: React.Context<IAppContext> = createContext({
     status: ''
   },
   news: {
-    data: null,
+    data: [],
     status: ''
   }
 });
