@@ -9,13 +9,13 @@ const News: React.FC = () => {
   if (status === 'loading') return <div>Loading News...</div>;
   return (
     <>
-      {newsData.map((newsArticle: NewsArticle) => {
+      {newsData.map((item: NewsArticle) => {
         return (
-          <a href={newsArticle.link} rel="noreferrer noopener" target="_blank" className="bg-white mb-4 block p-2 hover:bg-blue-50">
-            <h2 className="font-bold text-lg mb-2">{newsArticle.title}</h2>
-            <p>{newsArticle.description}</p>
+          <a key={item.id} href={item.link} rel="noreferrer noopener" target="_blank" className="bg-white mb-4 block p-2 hover:bg-blue-50">
+            <h2 className="font-bold text-lg mb-2">{item.title}</h2>
+            <p>{item.description}</p>
             <p className="italic opacity-75 text-sm mt-4">
-              Source: <span>{newsArticle.source}</span>
+              Source: <span>{item.source}</span>
             </p>
           </a>
         );
